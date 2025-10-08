@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
@@ -33,17 +34,24 @@ public class ExerciseSeeder implements ApplicationRunner {
     }
 
     private void seedExercises() {
-        CategoryEntity abs = categoryRepository.findByName("Abs");
-        CategoryEntity back = categoryRepository.findByName("Back");
-        CategoryEntity biceps = categoryRepository.findByName("Biceps");
-        CategoryEntity cardio = categoryRepository.findByName("Cardio");
-        CategoryEntity chest = categoryRepository.findByName("Chest");
-        CategoryEntity forearms = categoryRepository.findByName("Forearms");
-        CategoryEntity glutes = categoryRepository.findByName("Glutes");
-        CategoryEntity shoulders = categoryRepository.findByName("Shoulders");
-        CategoryEntity triceps = categoryRepository.findByName("Triceps");
-        CategoryEntity upper = categoryRepository.findByName("Upper Legs");
-        CategoryEntity lower = categoryRepository.findByName("Lower Legs");
+        List<String> categoryNames = exerciseRepository.findAll().stream().map(ExerciseEntity::getName).toList();
+
+        Map<String, CategoryEntity> categories = categoryNames.stream()
+                .collect(Collectors.toMap(
+                        name -> name,
+                        name -> categoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("Category not found: " + name))
+                ));
+//        CategoryEntity abs = categoryRepository.findByName("Abs").orElseThrow(new RuntimeException());
+//        CategoryEntity back = categoryRepository.findByName("Back");
+//        CategoryEntity biceps = categoryRepository.findByName("Biceps");
+//        CategoryEntity cardio = categoryRepository.findByName("Cardio");
+//        CategoryEntity chest = categoryRepository.findByName("Chest");
+//        CategoryEntity forearms = categoryRepository.findByName("Forearms");
+//        CategoryEntity glutes = categoryRepository.findByName("Glutes");
+//        CategoryEntity shoulders = categoryRepository.findByName("Shoulders");
+//        CategoryEntity triceps = categoryRepository.findByName("Triceps");
+//        CategoryEntity upper = categoryRepository.findByName("Upper Legs");
+//        CategoryEntity lower = categoryRepository.findByName("Lower Legs");
 
         List<ExerciseEntity> exercises = new ArrayList<>();
 
@@ -55,7 +63,7 @@ Lie flat on a bench, grip the bar slightly wider than shoulder-width, and unrack
 Lower to mid-chest, then press back up, keeping elbows at about 45°. Avoid bouncing the bar off your chest.
 """)
                 .videoUrl("https://cbstwmlblgfowgoejqls.supabase.co/storage/v1/object/public/fitness-tracker/BarbellBenchPress.gif")
-                        .categories(Set.of(chest, triceps, shoulders))
+                .categories(Set.of(categories.get("Chest"), categories.get("Triceps"), categories.get("Shoulders")))
                 .build()
         );
 
@@ -69,7 +77,7 @@ Curl it toward your chest while keeping elbows close.
 Avoid swinging your body and lower slowly to starting position.
 """)
                 .videoUrl("https://cbstwmlblgfowgoejqls.supabase.co/storage/v1/object/public/fitness-tracker/BarbellCurl.gif")
-                .categories(Set.of(biceps))
+                .categories(Set.of(categories.get("Biceps")))
                 .build()
         );
 
@@ -82,7 +90,7 @@ Raise arms out until shoulder height, elbows slightly bent, palms down.
 Control the motion—avoid swinging—and lower slowly.
 """)
                 .videoUrl("https://cbstwmlblgfowgoejqls.supabase.co/storage/v1/object/public/fitness-tracker/DumbbellLateralRaise.gif")
-                .categories(Set.of(shoulders))
+                .categories(Set.of(categories.get("Shoulders")))
                 .build()
         );
 
