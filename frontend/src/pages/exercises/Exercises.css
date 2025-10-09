@@ -1,0 +1,132 @@
+.exercises-page {
+    min-height: calc(100vh - 64px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.exercises-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.exercises-header {
+    margin-bottom: 1.5rem;
+}
+
+.exercises-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    margin-bottom: 0.5rem;
+}
+
+.exercises-subtitle {
+    font-size: 1rem;
+    color: rgb(163, 163, 163);
+    margin-bottom: 0;
+}
+
+.filter-dropdown-btn {
+    background-color: transparent;
+    border: 1px solid rgb(38, 38, 38);
+    color: rgb(250, 250, 250);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown-btn:hover,
+.filter-dropdown-btn:focus {
+    background-color: rgb(38, 38, 38);
+    border-color: rgb(0, 255, 122);
+    color: rgb(250, 250, 250);
+}
+
+.filter-dropdown-btn svg {
+    flex-shrink: 0;
+}
+
+.filter-dropdown-menu {
+    background-color: rgb(26, 26, 26);
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    min-width: 180px;
+}
+
+.filter-dropdown-menu .dropdown-item {
+    color: rgb(250, 250, 250);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown-menu .dropdown-item:hover,
+.filter-dropdown-menu .dropdown-item:focus {
+    background-color: rgb(38, 38, 38);
+    color: rgb(0, 255, 122);
+}
+
+.filter-dropdown-menu .dropdown-divider {
+    border-color: rgb(38, 38, 38);
+    margin: 0.5rem 0;
+}
+
+/* Desktop default grid */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.exercises-container {
+    padding: 0 2rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .exercise-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .exercises-container {
+        padding: 0 2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .exercise-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.no-exercises-container {
+    padding: 4rem 1rem;
+}
+
+.no-exercises-icon {
+    color: rgb(163, 163, 163);
+    width: 48px;
+    height: 48px;
+}
+
+.no-exercises-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(250, 250, 250);
+    margin-bottom: 0.5rem;
+}
+
+.no-exercises-text {
+    font-size: 1rem;
+    color: rgb(163, 163, 163);
+    margin-bottom: 0;
+}

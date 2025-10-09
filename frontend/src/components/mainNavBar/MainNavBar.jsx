@@ -2,11 +2,11 @@ import "./mainNavBar.css"
 
 const MainNavBar = () => {
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2">
-            <a class="navbar-brand" href="#">
+        <nav className="navbar navbar-expand-lg px-2">
+            <a className="navbar-brand" href="#">
                 <img src="/assets/logo.png" alt="Logo" height="45"/>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse p-2" id="navbarNav">

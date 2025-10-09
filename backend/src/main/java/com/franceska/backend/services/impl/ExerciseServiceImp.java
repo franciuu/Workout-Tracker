@@ -6,10 +6,12 @@ import com.franceska.backend.entities.CategoryEntity;
 import com.franceska.backend.entities.ExerciseEntity;
 import com.franceska.backend.repositories.ExerciseRepository;
 import com.franceska.backend.services.ExerciseService;
+import com.franceska.backend.specification.GenericSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,8 +20,9 @@ import java.util.stream.Collectors;
 public class ExerciseServiceImp implements ExerciseService {
     private final ExerciseRepository exerciseRepository;
     @Override
-    public List<ExerciseResponse> read() {
-        List<ExerciseEntity> existingExercises = exerciseRepository.findAll();
+    public List<ExerciseResponse> read(Map<String, Object> filters) {
+        List<ExerciseEntity> existingExercises = exerciseRepository.findAll(new GenericSpecification<>(filters));
+
         return existingExercises.stream()
                 .map(this::convertToResponse)
                 .collect(Collectors.toList());

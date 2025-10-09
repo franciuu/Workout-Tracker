@@ -1,5 +1,11 @@
-.navbar {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+nav.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgb(38, 38, 38);
+    box-shadow: none;
 }
 
 .navbar-brand {
@@ -12,14 +18,15 @@
     text-transform: uppercase;
     margin-right: 1rem;
     transition: color 0.3s;
+    color: rgb(163, 163, 163) !important;
 }
 
 .nav-link:hover {
-    color: #ccc !important;
+    color: rgb(0, 255, 122) !important;
 }
 
 .nav-link.active {
-    color: #fff !important;
+    color: rgb(250, 250, 250) !important;
 }
 
 .form-control {
