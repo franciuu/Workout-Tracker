@@ -3,36 +3,30 @@ package com.franceska.backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "categories")
-@Builder
-@NoArgsConstructor
+@Table(name = "users")
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
-public class CategoryEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    private String categoryId;
-
+    private String userId;
     @Column(unique = true)
-    private String name;
-    private String description;
-
-    @ManyToMany(mappedBy = "categories")
-    private Set<ExerciseEntity> exercises = new HashSet<>();
+    private String email;
+    private String password;
+    private String username;
 
     @CreationTimestamp
     @Column(updatable = false)
     private Timestamp createdAt;
-    @UpdateTimestamp
+    @CreationTimestamp
     private Timestamp updatedAt;
 }

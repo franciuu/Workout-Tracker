@@ -1,12 +1,11 @@
 package com.franceska.backend.services.impl;
 
-import com.franceska.backend.dto.CategoryResponse;
-import com.franceska.backend.dto.ExerciseResponse;
+import com.franceska.backend.dto.exercise.ExerciseResponse;
 import com.franceska.backend.entities.CategoryEntity;
 import com.franceska.backend.entities.ExerciseEntity;
 import com.franceska.backend.repositories.ExerciseRepository;
 import com.franceska.backend.services.ExerciseService;
-import com.franceska.backend.specification.GenericSpecification;
+import com.franceska.backend.specifications.GenericSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class ExerciseServiceImp implements ExerciseService {
                 .collect(Collectors.toList());
     }
 
-    private ExerciseResponse convertToResponse(ExerciseEntity exerciseEntity) {
+    ExerciseResponse convertToResponse(ExerciseEntity exerciseEntity) {
         return ExerciseResponse.builder()
                 .exerciseId(exerciseEntity.getExerciseId())
                 .name(exerciseEntity.getName())

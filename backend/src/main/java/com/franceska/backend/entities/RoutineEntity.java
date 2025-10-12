@@ -10,29 +10,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "categories")
-@Builder
+@Table(name = "routines")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
-public class CategoryEntity {
+public class RoutineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    private String categoryId;
-
-    @Column(unique = true)
+    private String routineId;
     private String name;
-    private String description;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<ExerciseEntity> exercises = new HashSet<>();
+
+    @OneToMany(mappedBy = "routine", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RoutineExerciseEntity> exercises = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @CreationTimestamp
     @Column(updatable = false)
     private Timestamp createdAt;
     @UpdateTimestamp
     private Timestamp updatedAt;
+
 }

@@ -1,9 +1,8 @@
 package com.franceska.backend.controllers;
 
-import com.franceska.backend.dto.ExerciseResponse;
+import com.franceska.backend.dto.exercise.ExerciseResponse;
 import com.franceska.backend.services.ExerciseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

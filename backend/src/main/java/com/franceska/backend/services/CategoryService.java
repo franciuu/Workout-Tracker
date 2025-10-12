@@ -1,6 +1,6 @@
 package com.franceska.backend.services;
 
-import com.franceska.backend.dto.CategoryResponse;
+import com.franceska.backend.dto.category.CategoryResponse;
 
 import java.util.List;
 

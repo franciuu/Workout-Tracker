@@ -1,6 +1,6 @@
 package com.franceska.backend.controllers;
 
-import com.franceska.backend.dto.CategoryResponse;
+import com.franceska.backend.dto.category.CategoryResponse;
 import com.franceska.backend.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

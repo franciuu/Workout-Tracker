@@ -1,10 +1,7 @@
-package com.franceska.backend.dto;
+package com.franceska.backend.dto.exercise;
 
 import com.franceska.backend.entities.CategoryEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +9,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 public class ExerciseRequest {
     private String name;
     private String description;

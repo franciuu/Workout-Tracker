@@ -1,4 +1,4 @@
-package com.franceska.backend.specification;
+package com.franceska.backend.specifications;
 
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;

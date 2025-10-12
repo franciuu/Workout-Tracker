@@ -1,6 +1,6 @@
 package com.franceska.backend.services.impl;
 
-import com.franceska.backend.dto.CategoryResponse;
+import com.franceska.backend.dto.category.CategoryResponse;
 import com.franceska.backend.entities.CategoryEntity;
 import com.franceska.backend.repositories.CategoryRepository;
 import com.franceska.backend.services.CategoryService;
