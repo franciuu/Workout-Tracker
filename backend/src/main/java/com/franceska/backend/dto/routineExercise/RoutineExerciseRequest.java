@@ -13,4 +13,6 @@ public class RoutineExerciseRequest {
     private String exerciseId;
     private Integer sets;
     private Integer reps;
+    private Integer weight;
+    private Integer orderIndex;
 }

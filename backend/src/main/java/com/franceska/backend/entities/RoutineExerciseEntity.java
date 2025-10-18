@@ -28,4 +28,6 @@ public class RoutineExerciseEntity {
 
     private Integer sets;
     private Integer reps;
+    private Integer weight;
+    private Integer orderIndex;
 }

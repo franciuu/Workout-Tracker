@@ -1,0 +1,100 @@
+.routine-card {
+    background-color: rgb(26, 26, 26);
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 0.625rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.routine-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 255, 122, 0.1);
+    border-color: rgb(128, 239, 52);
+}
+
+.routine-card-header {
+    background-color: transparent;
+    border-bottom: 1px solid rgb(38, 38, 38);
+    padding: 1.25rem;
+}
+
+.routine-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(250, 250, 250);
+    margin: 0 0 0.25rem 0;
+}
+
+.routine-description {
+    font-size: 0.875rem;
+    color: rgb(163, 163, 163);
+    margin: 0;
+}
+
+.routine-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.routine-btn-primary {
+    background-color: rgb(128, 239, 52);
+    border: 1px solid rgb(128, 239, 52);
+    color: rgb(19, 19, 19);
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.routine-btn-primary:hover {
+    background-color: rgba(94, 204, 20, 1);
+    border-color: rgba(94, 204, 20, 1);
+}
+
+.routine-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.routine-btn-outline {
+    background-color: transparent;
+    border: 1px solid rgb(38, 38, 38);
+    color: rgb(250, 250, 250);
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.routine-btn-edit {
+    flex: 1;
+}
+
+.routine-btn-delete {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.routine-btn-outline:hover {
+    background-color: rgb(38, 38, 38);
+    border-color: rgb(38, 38, 38);
+}
+
+.routine-btn-outline:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(38, 38, 38, 0.5);
+}

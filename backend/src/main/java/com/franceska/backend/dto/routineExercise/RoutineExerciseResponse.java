@@ -14,4 +14,6 @@ public class RoutineExerciseResponse {
     private String exerciseName;
     private Integer sets;
     private Integer reps;
+    private Integer weight;
+    private Integer orderIndex;
 }

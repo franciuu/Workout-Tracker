@@ -1,13 +1,10 @@
 import "./Exercises.css"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import ExerciseCard from "../../components/ExerciseCard/ExerciseCard"
-import { useStoreExercises } from '../../store/StoreExercises'
 import { fetchExercises } from "../../services/ExercisesService"
 import { useEffect, useState } from "react"
 
 const Exercises = () => {
-    // const {exercises, error} = useStoreExercises();
-    // console.log(exercises);
     const [exercises, setExercises] = useState([]);
     const [filters, setFilters] = useState({});
 

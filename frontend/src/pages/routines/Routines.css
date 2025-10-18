@@ -1,0 +1,86 @@
+.routines-page {
+    min-height: calc(100vh - 64px);
+    background-color: rgb(19, 19, 19);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.routines-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.routines-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .routines-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.routines-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: rgb(250, 250, 250);
+    margin: 0 0 0.5rem 0;
+}
+
+.routines-subtitle {
+    font-size: 1rem;
+    color: rgb(163, 163, 163);
+    margin: 0;
+}
+
+.create-routine-btn {
+    background-color: rgb(128, 239, 52);
+    border: 1px solid rgb(128, 239, 52);
+    color: rgb(19, 19, 19);
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.create-routine-btn:hover {
+    background-color: rgba(94, 204, 20, 1);
+    border-color: rgba(94, 204, 20, 1);
+}
+
+@media (max-width: 768px) {
+    .create-routine-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.routines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .routines-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .routines-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
