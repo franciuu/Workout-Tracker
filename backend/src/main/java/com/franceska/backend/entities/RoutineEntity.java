@@ -22,6 +22,7 @@ public class RoutineEntity {
 
     @Column(unique = true)
     private String routineId;
+    @Column(unique = true)
     private String name;
 
 

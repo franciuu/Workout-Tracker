@@ -43,12 +43,6 @@
     margin: 0 0 0.5rem 0;
 }
 
-.create-routine-subtitle {
-    font-size: 1rem;
-    color: rgb(163, 163, 163);
-    margin: 0;
-}
-
 .create-routine-form {
     display: flex;
     flex-direction: column;

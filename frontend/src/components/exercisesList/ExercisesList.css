@@ -1,0 +1,525 @@
+.exercises-list-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  height: 600px; /* Înălțime fixă pentru ambele coloane */
+}
+
+@media (max-width: 1024px) {
+  .exercises-list-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .exercises-right-column {
+    order: -1;
+  }
+}
+
+.exercises-left-column,
+.exercises-right-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Important pentru scrolling */
+}
+
+.exercises-list-card,
+.exercises-picker-card {
+  background-color: rgb(26, 26, 26);
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.exercises-list-header,
+.exercises-picker-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid rgb(38, 38, 38);
+  flex-shrink: 0;
+}
+
+.exercises-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.exercises-list-title,
+.exercises-picker-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(250, 250, 250);
+  margin: 0;
+}
+
+.exercises-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.5rem;
+  background-color: rgb(0, 255, 122);
+  color: rgb(19, 19, 19);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+
+.trash-zone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: 2px dashed transparent;
+  color: rgb(163, 163, 163);
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trash-zone-visible {
+  opacity: 1;
+  pointer-events: all;
+  border-color: rgb(38, 38, 38);
+}
+
+.trash-zone-active {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgb(239, 68, 68);
+  color: rgb(239, 68, 68);
+}
+
+.trash-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .trash-text {
+    display: none;
+  }
+}
+
+.exercises-list-body,
+.exercises-picker-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0; /* Important pentru scrolling */
+}
+
+/* Scrollbar styling (optional dar arată frumos) */
+.exercises-list-body::-webkit-scrollbar,
+.exercises-picker-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.exercises-list-body::-webkit-scrollbar-track,
+.exercises-picker-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.exercises-list-body::-webkit-scrollbar-thumb,
+.exercises-picker-body::-webkit-scrollbar-thumb {
+  background-color: rgb(38, 38, 38);
+  border-radius: 3px;
+}
+
+.exercises-list-body::-webkit-scrollbar-thumb:hover,
+.exercises-picker-body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 255, 122);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.empty-icon {
+  color: rgb(38, 38, 38);
+  margin-bottom: 1rem;
+}
+
+.empty-state-text {
+  color: rgb(163, 163, 163);
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+}
+
+.empty-state-subtext {
+  color: rgb(115, 115, 115);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.selected-exercises-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exercise-item {
+  background-color: rgb(19, 19, 19);
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: grab;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.exercise-item:active {
+  cursor: grabbing;
+}
+
+.exercise-item:hover {
+  border-color: rgb(0, 255, 122);
+}
+
+.exercise-item-active {
+  border-color: rgb(0, 255, 122);
+  background-color: rgba(0, 255, 122, 0.05);
+}
+
+.exercise-item-dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.exercise-item-drag-over {
+  border-top: 3px solid rgb(0, 255, 122);
+  margin-top: 0.5rem;
+}
+
+.exercise-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.exercise-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(115, 115, 115);
+  cursor: grab;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.drag-handle:hover {
+  color: rgb(163, 163, 163);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.exercise-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: rgb(38, 38, 38);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(250, 250, 250);
+  flex-shrink: 0;
+}
+
+.exercise-item-active .exercise-order {
+  background-color: rgb(0, 255, 122);
+  color: rgb(19, 19, 19);
+}
+
+.exercise-name {
+  color: rgb(250, 250, 250);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: rgb(163, 163, 163);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.remove-btn:hover {
+  color: rgb(239, 68, 68);
+}
+
+.exercise-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input-group label {
+  font-size: 0.75rem;
+  color: rgb(163, 163, 163);
+  font-weight: 500;
+}
+
+.input-group input {
+  background-color: rgb(26, 26, 26);
+  border: 1px solid rgb(38, 38, 38);
+  color: rgb(250, 250, 250);
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  width: 100%;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: rgb(0, 255, 122);
+}
+
+.search-wrapper {
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(163, 163, 163);
+  pointer-events: none;
+}
+
+.search-input {
+  background-color: rgb(19, 19, 19);
+  border: 1px solid rgb(38, 38, 38);
+  color: rgb(250, 250, 250);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgb(0, 255, 122);
+}
+
+.exercise-picker-item {
+  width: 100%;
+  text-align: left;
+  padding: 0.875rem;
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 0.5rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.exercise-picker-item:hover {
+  background-color: rgb(38, 38, 38);
+  border-color: rgb(0, 255, 122);
+}
+
+.exercise-picker-item:hover .exercise-picker-action {
+  color: rgb(0, 255, 122);
+}
+
+.exercise-picker-content {
+  flex: 1;
+}
+
+.exercise-picker-name {
+  font-weight: 500;
+  color: rgb(250, 250, 250);
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.exercise-picker-muscles {
+  font-size: 0.75rem;
+  color: rgb(163, 163, 163);
+}
+
+.exercise-picker-action {
+  color: rgb(163, 163, 163);
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.no-results {
+  text-align: center;
+  color: rgb(163, 163, 163);
+  padding: 2rem 1rem;
+  margin: 0;
+}
+
+.exercise-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-to-list-btn {
+  background: none;
+  border: none;
+  color: rgb(163, 163, 163);
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  align-self: flex-start;
+}
+
+.back-to-list-btn:hover {
+  color: rgb(250, 250, 250);
+}
+
+.exercise-details-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: rgb(38, 38, 38);
+}
+
+.exercise-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exercise-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exercise-details-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exercise-details-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(250, 250, 250);
+  margin: 0;
+}
+
+.difficulty-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  align-self: flex-start;
+}
+
+.difficulty-beginner {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: rgb(34, 197, 94);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.difficulty-intermediate {
+  background-color: rgba(234, 179, 8, 0.15);
+  color: rgb(234, 179, 8);
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.difficulty-advanced {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: rgb(239, 68, 68);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.exercise-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(250, 250, 250);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-text {
+  color: rgb(163, 163, 163);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.muscle-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.muscle-tag {
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 255, 122, 0.1);
+  color: rgb(0, 255, 122);
+  border: 1px solid rgba(0, 255, 122, 0.2);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
